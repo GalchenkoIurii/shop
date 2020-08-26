@@ -32,9 +32,10 @@ class Router
     public static function dispatch($url)
     {
         if (self::matchRoute($url)) {
-            echo 'Ok';
+            $controller = 'app\controllers\\' . self::$route['prefix']
+                . self::$route['controller'] . 'Controller';
         } else {
-            echo 'No';
+            throw new \Exception('Page not found', 404);
         }
     }
 
@@ -55,11 +56,22 @@ class Router
                 } else {
                     $route['prefix'] .= '\\';
                 }
+                $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
                 debug(self::$route);
                 return true;
             }
         }
         return false;
+    }
+
+    protected static function upperCamelCase($name)
+    {
+        debug($name);
+    }
+
+    protected static function lowerCamelCase($name)
+    {
+
     }
 }
