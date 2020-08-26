@@ -34,6 +34,16 @@ class ErrorHandler
 
     protected function displayError($errno, $errstr, $errfile, $errline, $response = 404)
     {
-        
+        http_response_code($response);
+        if ($response == 404 && !DEBUG) {
+            require_once WWW . '/errors/404.php';
+            die;
+        }
+        if (DEBUG) {
+            require_once WWW . '/errors/dev.php';
+        } else {
+            require_once WWW . '/errors/prod.php';
+        }
+        die;
     }
 }
