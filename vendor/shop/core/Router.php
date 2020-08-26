@@ -34,6 +34,17 @@ class Router
         if (self::matchRoute($url)) {
             $controller = 'app\controllers\\' . self::$route['prefix']
                 . self::$route['controller'] . 'Controller';
+            if (class_exists($controller)) {
+                $controllerObject = new $controller(self::$route);
+                $action = self::lowerCamelCase(self::$route['action']) . 'Action';
+                if (method_exists($controllerObject, $action)) {
+                    $controllerObject->$action();
+                } else {
+                    throw new \Exception("Method $controller::$action not found", 404);
+                }
+            } else {
+                throw new \Exception("Controller $controller not found", 404);
+            }
         } else {
             throw new \Exception('Page not found', 404);
         }
@@ -58,7 +69,6 @@ class Router
                 }
                 $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
-                debug(self::$route);
                 return true;
             }
         }
@@ -72,6 +82,6 @@ class Router
 
     protected static function lowerCamelCase($name)
     {
-
+        return lcfirst(self::upperCamelCase($name));
     }
 }
