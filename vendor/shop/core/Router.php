@@ -67,7 +67,7 @@ class Router
 
     protected static function upperCamelCase($name)
     {
-        debug($name);
+        return str_replace('-', '', ucwords($name, '-'));
     }
 
     protected static function lowerCamelCase($name)
