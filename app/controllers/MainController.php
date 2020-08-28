@@ -20,5 +20,8 @@ class MainController extends AppController
             'Описание',
             'Ключевые слова'
         );
+        $name = 'Jack';
+        $age = 30;
+        $this->set(compact('name', 'age'));
     }
 }
