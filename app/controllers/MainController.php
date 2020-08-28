@@ -9,9 +9,7 @@
 namespace app\controllers;
 
 
-use shop\base\Controller;
-
-class MainController extends Controller
+class MainController extends AppController
 {
     public function indexAction()
     {
