@@ -15,6 +15,8 @@ class MainController extends AppController
 {
     public function indexAction()
     {
+        $posts = \R::findAll('test');
+        $post = \R::findOne('test', 'id = ?', [2]);
         $this->setMeta(
             App::$app->getProperty('site_name') . ' | ' . 'Главная',
             'Описание',
@@ -22,6 +24,6 @@ class MainController extends AppController
         );
         $name = 'Jack';
         $age = 30;
-        $this->set(compact('name', 'age'));
+        $this->set(compact('name', 'age', 'posts'));
     }
 }
