@@ -7,5 +7,10 @@
 </head>
 <body>
     <p>Default layout</p>
+
+    <p>Content: </p>
+
+    <?=$content;?>
+
 </body>
 </html>
