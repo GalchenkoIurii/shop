@@ -10,6 +10,7 @@ namespace app\controllers;
 
 
 use shop\App;
+use shop\Cache;
 
 class MainController extends AppController
 {
@@ -24,6 +25,16 @@ class MainController extends AppController
         );
         $name = 'Jack';
         $age = 30;
+
+        $cache = Cache::instance();
+        //$cache->set('test', $name);
+        //$cache->delete('test');
+        $data = $cache->get('test');
+        if (!$data) {
+            $cache->set('test', $name);
+        }
+        debug($data);
+
         $this->set(compact('name', 'age', 'posts'));
     }
 }

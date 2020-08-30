@@ -8,7 +8,7 @@ define("CORE", ROOT . '/vendor/shop/core');
 define("LIBS", ROOT . '/vendor/shop/core/libs');
 define("CACHE", ROOT . '/tmp/cache');
 define("CONFIG", ROOT . '/config');
-define("LAYOUT", 'default');
+define("LAYOUT", 'shop');
 
 $app_path = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
 $app_path = preg_replace("#[^/]+$#", '', $app_path);
